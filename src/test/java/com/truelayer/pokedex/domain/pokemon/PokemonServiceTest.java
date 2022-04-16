@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class PokemonServiceTest {
 
@@ -17,6 +18,7 @@ class PokemonServiceTest {
 
   @BeforeEach
   void setup() {
+    MockitoAnnotations.openMocks(this);
     pokemonService = new PokemonService(pokeApiPort);
   }
 
