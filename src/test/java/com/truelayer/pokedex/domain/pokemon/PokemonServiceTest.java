@@ -14,9 +14,9 @@ import org.mockito.MockitoAnnotations;
 
 class PokemonServiceTest {
 
-  PokemonService pokemonService;
+  private PokemonService pokemonService;
 
-  @Mock PokeApiPort pokeApiPort;
+  @Mock private PokeApiPort pokeApiPort;
 
   @BeforeEach
   void setup() {

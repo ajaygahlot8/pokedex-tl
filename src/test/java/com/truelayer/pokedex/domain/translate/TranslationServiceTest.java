@@ -1,19 +1,25 @@
 package com.truelayer.pokedex.domain.translate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.truelayer.pokedex.domain.pokemon.Pokemon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class TranslationServiceTest {
 
-  TranslationService translationService;
+  private TranslationService translationService;
 
-  FunTranslationPort funTranslationPort;
+  @Mock private FunTranslationPort funTranslationPort;
 
   @BeforeEach
   void setup() {
+    MockitoAnnotations.openMocks(this);
     translationService = new TranslationService(funTranslationPort);
   }
 
@@ -33,7 +39,11 @@ class TranslationServiceTest {
     var expectedDescription =
         "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
 
+    when(funTranslationPort.translate(pokemon.getDescription())).thenReturn(expectedDescription);
+
     var result = translationService.translateDescription(pokemon);
+
+    verify(funTranslationPort, times(1)).translate(pokemon.getDescription());
     assertEquals(expectedDescription, result);
   }
 }
