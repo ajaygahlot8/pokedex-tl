@@ -42,7 +42,7 @@ class PokemonServiceTest {
     var result = pokemonService.getPokemon(pokemonName);
 
     verify(pokeApiPort, times(1)).getPokemon(pokemonName);
-    assertEquals(result, pokemon);
+    assertEquals(pokemon, result);
   }
 
   @Test
