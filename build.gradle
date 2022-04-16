@@ -1,0 +1,52 @@
+plugins {
+          id 'org.springframework.boot' version '2.6.6'
+          id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+          id 'java'
+          id "com.diffplug.spotless" version "5.14.3"
+}
+
+group = 'com.truelayer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+          compileOnly {
+                    extendsFrom annotationProcessor
+          }
+}
+
+repositories {
+          mavenCentral()
+}
+
+dependencies {
+          implementation 'org.springframework.boot:spring-boot-starter-web'
+          compileOnly 'org.projectlombok:lombok'
+          developmentOnly 'org.springframework.boot:spring-boot-devtools'
+          annotationProcessor 'org.projectlombok:lombok'
+          testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+          useJUnitPlatform()
+}
+
+spotless {
+          format "misc", {
+                    target "**/*.gradle", "**/*.md", "**/.gitignore"
+                    trimTrailingWhitespace()
+                    indentWithSpaces(10)
+                    endWithNewline()
+          }
+          java {
+                    target "**/*.java"
+                    removeUnusedImports()
+                    googleJavaFormat("1.9")
+                    endWithNewline()
+                    custom "noWildcardImports", {
+                              if (it.contains("*;\n")) {
+                                        throw new Error("No wildcard imports allowed")
+                              }
+                    } as Closure<String>
+          }
+}
