@@ -12,8 +12,7 @@ public class TranslationService {
     this.funTranslationPort = funTranslationPort;
   }
 
-  String translateDescription(Pokemon pokemon) {
-
+  public String translateDescription(Pokemon pokemon) {
     return funTranslationPort.translate(pokemon.getDescription());
   }
 }
