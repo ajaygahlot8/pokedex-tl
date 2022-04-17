@@ -23,7 +23,14 @@ public class PokemonController {
       @PathVariable("pokemonName") String pokemonName) {
 
     var pokemon = pokemonService.getPokemon(pokemonName);
+    return ApiResponse.createSuccessResponse(GetPokemonResponse.from(pokemon));
+  }
 
+  @GetMapping("/pokemon/translated/{pokemonName}")
+  public ApiResponse<GetPokemonResponse> getTranslatedPokemon(
+      @PathVariable("pokemonName") String pokemonName) {
+
+    var pokemon = pokemonService.getTranslatedPokemon(pokemonName);
     return ApiResponse.createSuccessResponse(GetPokemonResponse.from(pokemon));
   }
 }

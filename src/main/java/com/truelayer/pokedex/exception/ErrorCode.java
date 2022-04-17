@@ -6,7 +6,6 @@ import lombok.Getter;
 public enum ErrorCode {
   E1("Internal Server Error"),
   P1("Pokemon not found");
-
   private final String message;
   private final String code;
 
