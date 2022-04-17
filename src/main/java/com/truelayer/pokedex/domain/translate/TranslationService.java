@@ -13,6 +13,13 @@ public class TranslationService {
   }
 
   public String translateDescription(Pokemon pokemon) {
-    return funTranslationPort.translate(pokemon.getDescription());
+    var translationType = getTranslationType(pokemon);
+    return funTranslationPort.translate(pokemon.getDescription(), translationType);
+  }
+
+  private TranslationType getTranslationType(Pokemon pokemon) {
+    return pokemon.getHabitat().equals("cave") || pokemon.getIsLegendary()
+        ? TranslationType.YODA
+        : TranslationType.SHAKESPEARE;
   }
 }

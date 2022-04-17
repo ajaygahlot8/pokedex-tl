@@ -1,12 +1,13 @@
 package com.truelayer.pokedex.adapter;
 
 import com.truelayer.pokedex.domain.translate.FunTranslationPort;
+import com.truelayer.pokedex.domain.translate.TranslationType;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FunTranslationAdapter implements FunTranslationPort {
   @Override
-  public String translate(String description) {
+  public String translate(String description, TranslationType translationType) {
     return null;
   }
 }

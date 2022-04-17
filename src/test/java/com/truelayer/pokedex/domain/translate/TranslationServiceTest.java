@@ -39,11 +39,63 @@ class TranslationServiceTest {
     var expectedDescription =
         "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
 
-    when(funTranslationPort.translate(pokemon.getDescription())).thenReturn(expectedDescription);
+    when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.YODA))
+        .thenReturn(expectedDescription);
 
     var result = translationService.translateDescription(pokemon);
 
-    verify(funTranslationPort, times(1)).translate(pokemon.getDescription());
+    verify(funTranslationPort, times(1)).translate(pokemon.getDescription(), TranslationType.YODA);
+    assertEquals(expectedDescription, result);
+  }
+
+  @Test
+  void testTranslateDescriptionWithCaveHabitat() {
+    var pokemonName = "mewtwo";
+    var description =
+        "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments.";
+    var pokemon =
+        Pokemon.builder()
+            .name(pokemonName)
+            .description(description)
+            .habitat("cave")
+            .isLegendary(false)
+            .build();
+
+    var expectedDescription =
+        "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
+
+    when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.YODA))
+        .thenReturn(expectedDescription);
+
+    var result = translationService.translateDescription(pokemon);
+
+    verify(funTranslationPort, times(1)).translate(pokemon.getDescription(), TranslationType.YODA);
+    assertEquals(expectedDescription, result);
+  }
+
+  @Test
+  void testTranslateDescriptionWithShakespeareTranslation() {
+    var pokemonName = "mewtwo";
+    var description =
+        "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments.";
+    var pokemon =
+        Pokemon.builder()
+            .name(pokemonName)
+            .description(description)
+            .habitat("rare")
+            .isLegendary(false)
+            .build();
+
+    var expectedDescription =
+        "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
+
+    when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.SHAKESPEARE))
+        .thenReturn(expectedDescription);
+
+    var result = translationService.translateDescription(pokemon);
+
+    verify(funTranslationPort, times(1))
+        .translate(pokemon.getDescription(), TranslationType.SHAKESPEARE);
     assertEquals(expectedDescription, result);
   }
 }

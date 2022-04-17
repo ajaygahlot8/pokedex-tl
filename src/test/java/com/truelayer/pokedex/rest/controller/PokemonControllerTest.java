@@ -105,7 +105,6 @@ class PokemonControllerTest {
   @DisplayName("Should not be able to get translated pokemon if pokemon not found")
   void testGetTranslatedPokemonWithFailure() throws Exception {
     var pokemonName = "mewtwo";
-
     var expectedResponse = ApiResponse.createErrorResponse(ApiError.fromErrorCode(ErrorCode.P1));
 
     doThrow(new PokemonNotFoundException(ErrorCode.P1))
@@ -125,7 +124,6 @@ class PokemonControllerTest {
   @DisplayName("Should not be able to get pokemon if pokemon not found")
   void testGetPokemonWithFailure() throws Exception {
     var pokemonName = "mewtwo";
-
     var expectedResponse = ApiResponse.createErrorResponse(ApiError.fromErrorCode(ErrorCode.P1));
 
     doThrow(new PokemonNotFoundException(ErrorCode.P1))
