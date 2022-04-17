@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.truelayer.pokedex.domain.pokemon.Pokemon;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -40,7 +41,7 @@ class TranslationServiceTest {
         "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
 
     when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.YODA))
-        .thenReturn(expectedDescription);
+        .thenReturn(Optional.of(expectedDescription));
 
     var result = translationService.translateDescription(pokemon);
 
@@ -65,7 +66,7 @@ class TranslationServiceTest {
         "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
 
     when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.YODA))
-        .thenReturn(expectedDescription);
+        .thenReturn(Optional.of(expectedDescription));
 
     var result = translationService.translateDescription(pokemon);
 
@@ -90,7 +91,7 @@ class TranslationServiceTest {
         "created by a scientist after years of horrific gene splicing and DNA engineering experiments, It was";
 
     when(funTranslationPort.translate(pokemon.getDescription(), TranslationType.SHAKESPEARE))
-        .thenReturn(expectedDescription);
+        .thenReturn(Optional.of(expectedDescription));
 
     var result = translationService.translateDescription(pokemon);
 

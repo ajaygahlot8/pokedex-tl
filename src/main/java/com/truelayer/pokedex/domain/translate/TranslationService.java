@@ -14,7 +14,9 @@ public class TranslationService {
 
   public String translateDescription(Pokemon pokemon) {
     var translationType = getTranslationType(pokemon);
-    return funTranslationPort.translate(pokemon.getDescription(), translationType);
+    return funTranslationPort
+        .translate(pokemon.getDescription(), translationType)
+        .orElse(pokemon.getDescription());
   }
 
   private TranslationType getTranslationType(Pokemon pokemon) {

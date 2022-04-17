@@ -1,5 +1,7 @@
 package com.truelayer.pokedex.domain.translate;
 
+import java.util.Optional;
+
 public interface FunTranslationPort {
-  String translate(String description, TranslationType translationType);
+  Optional<String> translate(String description, TranslationType translationType);
 }

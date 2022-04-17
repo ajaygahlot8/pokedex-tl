@@ -24,8 +24,8 @@ public class PokemonService {
 
   public Pokemon getTranslatedPokemon(String pokemonName) {
     var pokemon = getPokemon(pokemonName);
-    var translateDescription = translationService.translateDescription(pokemon);
-    pokemon.setDescription(translateDescription);
+    var translatedDescription = translationService.translateDescription(pokemon);
+    pokemon.setDescription(translatedDescription);
     return pokemon;
   }
 }
